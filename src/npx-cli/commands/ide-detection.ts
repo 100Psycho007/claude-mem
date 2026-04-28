@@ -90,6 +90,13 @@ export function detectInstalledIDEs(): IDEInfo[] {
       supported: true,
     },
     {
+      id: 'kiro',
+      label: 'Kiro',
+      detected: existsSync(join(home, '.kiro')),
+      supported: true,
+      hint: 'hooks-based integration',
+    },
+    {
       id: 'opencode',
       label: 'OpenCode',
       detected:
