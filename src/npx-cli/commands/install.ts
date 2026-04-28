@@ -167,6 +167,19 @@ async function setupIDEs(selectedIDEs: string[]): Promise<string[]> {
         break;
       }
 
+      case 'kiro': {
+        const { installKiroHooks } = await import('../../services/integrations/KiroHooksInstaller.js');
+        const kiroResult = await installKiroHooks();
+        if (kiroResult === 0) {
+          log.success('Kiro: hooks installed.');
+          log.info('Kiro: start the worker with `npx claude-mem start`, then restart Kiro.');
+        } else {
+          log.error('Kiro: hook installation failed.');
+          failedIDEs.push(ideId);
+        }
+        break;
+      }
+
       case 'opencode': {
         const { installOpenCodeIntegration } = await import('../../services/integrations/OpenCodeInstaller.js');
         const openCodeResult = await installOpenCodeIntegration();
