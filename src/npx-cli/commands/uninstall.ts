@@ -333,6 +333,10 @@ export async function runUninstallCommand(): Promise<void> {
       const { uninstallCodexCli } = await import('../../services/integrations/CodexCliInstaller.js');
       return uninstallCodexCli();
     }},
+    { label: 'Kiro hooks', fn: async () => {
+      const { uninstallKiroHooks } = await import('../../services/integrations/KiroHooksInstaller.js');
+      return uninstallKiroHooks();
+    }},
   ];
 
   for (const { label, fn } of ideCleanups) {
